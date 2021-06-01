@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project61
+spec:
+  selector:
+      matchLabels:
+        app: project61
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: project61
+    spec:
+      containers:
+        - name: project61
+          image: gitorko/project61:latest
+          ports:
+            - containerPort: 9090
+          resources:
+            limits:
+              cpu: "1"
+              memory: "500Mi"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: project61
+spec:
+  ports:
+  - port: 9090
+    targetPort: 9090
+    name: http
+  selector:
+    app: project61
+  type: LoadBalancer
