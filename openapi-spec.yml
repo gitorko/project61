@@ -1,0 +1,40 @@
+openapi: '3.0.2'
+info:
+  title: Age Calculator API
+  version: '1.0'
+servers:
+  - url: https://localhost:9090
+components:
+  schemas:
+    age-response:
+      type: object
+      properties:
+        days:
+          type: string
+          example: 23
+        months:
+          type: string
+          example: 4
+        year:
+          type: string
+          example: 41
+paths:
+  /api/{dob}:
+    get:
+      operationId: v1
+      summary: Get age
+      description: Get age api
+      parameters:
+        - in: path
+          name: dob
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/age-response'
+ 
