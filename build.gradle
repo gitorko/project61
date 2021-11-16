@@ -5,6 +5,7 @@ plugins {
     id 'checkstyle'
     id 'jacoco'
     id "com.github.spotbugs" version "4.5.0"
+    id 'com.google.cloud.tools.jib' version '3.1.4'
 }
 
 apply plugin: 'checkstyle'
@@ -52,3 +53,15 @@ jacocoTestCoverageVerification {
         }
     }
 }
+
+jib {
+    from {
+        image = 'openjdk:11'
+    }
+    container {
+        ports = ['9090/tcp']
+        creationTime = 'USE_CURRENT_TIMESTAMP'
+    }
+}
+jib.to.image = 'project61:1.0.0'
+

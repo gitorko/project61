@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: project61-k8
+  name: project61-k8s
 spec:
   selector:
       matchLabels:
-        app: project61-k8
+        app: project61-k8s
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -15,14 +15,14 @@ spec:
   template:
     metadata:
       labels:
-        app: project61-k8
+        app: project61-k8s
     spec:
       containers:
         - name: project61
           image: project61:latest
           imagePullPolicy: Never
           ports:
-            - containerPort: 8080
+            - containerPort: 9090
           resources:
             limits:
               cpu: "1"
@@ -31,12 +31,12 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: project61-k8
+  name: project61-k8s
 spec:
   ports:
-  - port: 8080
-    targetPort: 8080
+  - port: 9090
+    targetPort: 9090
     name: http
   selector:
-    app: project61-k8
+    app: project61-k8s
   type: LoadBalancer
