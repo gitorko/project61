@@ -46,6 +46,6 @@ public class AppController {
     @GetMapping("/time")
     public String getServerTime() {
         String podName = System.getenv("HOSTNAME");
-        return "Pod: "+ podName + " : " + LocalDateTime.now();
+        return "Pod: " + podName + " : " + LocalDateTime.now();
     }
 }

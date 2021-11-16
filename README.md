@@ -5,7 +5,7 @@ VSCode Feature Walkthrough
 curl -X GET http://localhost:9090/api/age/01-01-1980
 
 ```bash
-docker build -t project61:latest .
+docker build -f k8/Dockerfile -t project61:latest .
 docker images
 docker run -p 8080:8080 project61:latest
 kubectl run project61-k8 --image project61:latest --image-pull-policy=Never --port=8080
