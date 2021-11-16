@@ -3,7 +3,7 @@ info:
   title: Age Calculator API
   version: '1.0'
 servers:
-  - url: https://localhost:9090
+  - url: https://localhost:8080
 components:
   schemas:
     age-response:
@@ -37,4 +37,3 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/age-response'
- 
