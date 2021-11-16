@@ -1,10 +1,11 @@
 /**
- * Copyright (c) 2021 Company. All Rights Reserved.
+ * Copyright (c) Company, Inc. All Rights Reserved.
  */
 
 package com.demo.project61.controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -40,5 +41,10 @@ public class AppController {
         final PersonAge pa = svc.calculateAge(dob);
         log.info("Person Age: {}", pa);
         return pa;
+    }
+
+    @GetMapping("/time")
+    public LocalDateTime getServerTime() {
+        return LocalDateTime.now();
     }
 }

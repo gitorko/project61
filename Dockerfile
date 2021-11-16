@@ -1,5 +1,5 @@
-FROM amazoncorretto:8
-VOLUME /tmp
-COPY build/libs/project61-0.0.1-SNAPSHOT.jar project61.jar
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/project61.jar"]
-EXPOSE 9090
+FROM openjdk:11
+WORKDIR /var/app
+ADD build/libs/project61-1.0.0.jar /var/app/project61-1.0.0.jar
+ENTRYPOINT [ "java", "-jar", "/var/app/project60-1.0.0.jar" ]
+EXPOSE 8080

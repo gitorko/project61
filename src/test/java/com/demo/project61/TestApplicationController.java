@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 Company. All Rights Reserved.
+ * Copyright (c) Company, Inc. All Rights Reserved.
  */
 
 package com.demo.project61;
@@ -11,15 +11,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.assertj.core.api.Assertions;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -31,9 +27,7 @@ import com.demo.project61.controller.AppController;
 import com.demo.project61.pojo.PersonAge;
 import com.demo.project61.service.AppServiceImpl;
 
-@RunWith(SpringRunner.class)
 @WebMvcTest(AppController.class)
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestApplicationController {
 
     @Autowired

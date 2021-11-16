@@ -64,7 +64,7 @@
 
     <module name="RegexpHeader">
         <property name="header"
-                  value="^/\*\n^ \* Copyright \(c\) (\d\d\d\d)(-\d\d\d\d)? Company\. All Rights Reserved\.\n^ \*/\n\n"/>
+                  value="^/\*\n^ \* Copyright \(c\) Company, Inc\. All Rights Reserved\.\n^ \*/\n\n"/>
         <property name="fileExtensions" value="java"/>
     </module>
 
