@@ -31,12 +31,12 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: project61
+  name: project61-k8
 spec:
   ports:
   - port: 8080
     targetPort: 8080
     name: http
   selector:
-    app: project61
+    app: project61-k8
   type: LoadBalancer
