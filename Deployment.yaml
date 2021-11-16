@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: project61
+  name: project61-k8
 spec:
   selector:
       matchLabels:
-        app: project61
+        app: project61-k8
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -14,12 +14,12 @@ spec:
   template:
     metadata:
       labels:
-        app: project61
+        app: project61-k8
     spec:
       containers:
         - name: project61
           image: project61:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Never
           ports:
             - containerPort: 8080
           resources:
