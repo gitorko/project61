@@ -1,0 +1,14 @@
+project61:
+  image: project61
+  replicaCount: 3
+
+image:
+  tag: 1.0.0
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  externalPort: 9090
+  internalPort: 9090
+  externalDebugPort: 5005
+  internalDebugPort: 5005

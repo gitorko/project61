@@ -19,8 +19,8 @@ spec:
     spec:
       containers:
         - name: project61
-          image: project61:latest
-          imagePullPolicy: Never
+          image: project61:1.0.0
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9090
           resources:

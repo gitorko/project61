@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project61-k8s
+  labels:
+    name: project61-k8s
+  {{- template "labels" . }}
+spec:
+  selector:
+    matchLabels:
+      app: project61-k8s
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: project61-k8s
+    spec:
+      containers:
+        - name: project61-k8s
+          image: {{ .Values.project61.image }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.internalPort }}
+              name: "http"
+            - containerPort: {{ .Values.service.internalDebugPort }}
+              name: "debug"
