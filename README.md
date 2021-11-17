@@ -1,6 +1,6 @@
 # Project61
 
-Rest Api + Unit Test + Code Coverage + SpotBugs + Docker + Kubernetes + Helm + Debugging
+Rest Api + Unit Test + Code Coverage + SpotBugs + Docker + Kubernetes + Helm + Debugging + OpenAPI 3.0
 
 ```bash
 curl -X GET http://localhost:9090/api/age/01-01-1980
