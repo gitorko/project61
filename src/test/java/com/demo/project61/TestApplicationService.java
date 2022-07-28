@@ -31,7 +31,7 @@ public class TestApplicationService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate dob = LocalDate.parse(str, formatter);
         PersonAge pa = svc.calculateAge(dob);
-        Assertions.assertThat(pa.getYears()).isEqualTo(41);
+        Assertions.assertThat(pa.getYears()).isGreaterThan(40);
     }
 
 }

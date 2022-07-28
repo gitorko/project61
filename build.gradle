@@ -1,11 +1,11 @@
 plugins {
-    id 'org.springframework.boot' version '2.6.0-RC1'
+    id 'org.springframework.boot' version '2.7.1'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id 'checkstyle'
     id 'jacoco'
-    id "com.github.spotbugs" version "4.5.0"
-    id 'com.google.cloud.tools.jib' version '3.1.4'
+    id "com.github.spotbugs" version '4.7.1'
+    id 'com.google.cloud.tools.jib' version '3.2.1'
 }
 
 apply plugin: 'checkstyle'
@@ -14,7 +14,7 @@ apply plugin: "com.github.spotbugs"
 
 group = 'com.demo'
 version = '1.0.0'
-sourceCompatibility = '11'
+sourceCompatibility = '17'
 
 configurations {
     compileOnly {
@@ -56,7 +56,7 @@ jacocoTestCoverageVerification {
 
 jib {
     from {
-        image = 'openjdk:11'
+        image = 'openjdk:17'
     }
     container {
         ports = ['9090/tcp']
