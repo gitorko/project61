@@ -6,6 +6,8 @@ package com.demo.project61.controller;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -32,6 +34,8 @@ public class AppController {
     @Autowired
     AppServiceImpl svc;
 
+    List<String> numList = new ArrayList<>();
+
     @GetMapping("/age/{dob}")
     public PersonAge calculateAge(@PathVariable("dob") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate dob) {
         log.info("Date of Birth: {}", dob);
@@ -48,5 +52,15 @@ public class AppController {
         log.info("Getting server time!");
         String podName = System.getenv("HOSTNAME");
         return "Pod: " + podName + " : " + LocalDateTime.now();
+    }
+
+    @GetMapping("/spike")
+    public Integer spikeMemory() {
+        log.info("Spiking memory!");
+        for (int i = 0; i < 99999; i++) {
+            numList.add("num_" + i);
+            log.info("Value: {}", "num_" + i);
+        }
+        return numList.size();
     }
 }

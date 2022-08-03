@@ -37,7 +37,8 @@ You can also build via gradle via the jib plugin
 Test if the docker image is working
 
 ```bash
-docker run -p 9090:9090 -p 5005:5005 --name project61 project61:1.0.0
+docker rm project61
+docker run -p 9090:9090 -p 5005:5005 -p 9095:9095 --name project61 project61:1.0.0
 ```
 
 [http://localhost:9090/api/time](http://localhost:9090/api/time)

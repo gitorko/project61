@@ -3,6 +3,8 @@ HELP.md
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 
+.java-version
+
 ### STS ###
 .apt_generated
 .classpath
