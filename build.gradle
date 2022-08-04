@@ -60,8 +60,8 @@ jib {
     }
     container {
         ports = ['9090/tcp', '9095/tcp']
-        jvmFlags = ['-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005']
-        args = ['-Dcom.sun.management.jmxremote=true',
+        jvmFlags = ['-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005',
+                '-Dcom.sun.management.jmxremote=true',
                 '-Dcom.sun.management.jmxremote.port=9095',
                 '-Dcom.sun.management.jmxremote.local.only=false',
                 '-Dcom.sun.management.jmxremote.authenticate=false',

@@ -15,7 +15,7 @@ import com.demo.project61.pojo.PersonAge;
  * ApplicationService
  */
 @Component
-public class AppServiceImpl implements IAppServer {
+public class AppServiceImpl implements AppService {
 
     public PersonAge calculateAge(LocalDate dob) {
         final LocalDate today = LocalDate.now();

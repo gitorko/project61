@@ -9,8 +9,8 @@ import java.time.LocalDate;
 import com.demo.project61.pojo.PersonAge;
 
 /**
- * IAppServer
+ * AppService
  */
-interface IAppServer {
+interface AppService {
     PersonAge calculateAge(LocalDate dob);
 }

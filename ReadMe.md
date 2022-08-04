@@ -23,7 +23,7 @@ Run the following commands to build the docker image
 
 ```bash
 docker build -f k8s/Dockerfile --force-rm -t project61:1.0.0 .
-docker images
+docker images | grep project61
 ```
 
 You can also build via gradle via the jib plugin
@@ -85,6 +85,12 @@ Clean up.
 ```bash
 kubectl delete pod project61-k8s
 kubectl delete service project61-k8s
+```
+
+Port forward
+
+```bash
+ kubectl port-forward pod/<pod-name> 9095:9095
 ```
 
 Now deploy via the kubernetes yaml file.
