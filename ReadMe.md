@@ -1,6 +1,6 @@
 # Project61
 
-Rest Api + Unit Test + Code Coverage + SpotBugs + Docker + Kubernetes + Helm + Debugging + OpenAPI 3.0
+Rest Api + Unit Test + Code Coverage + Check Style + SpotBugs + Docker + Kubernetes + Helm + Debugging + OpenAPI 3.0 + Jenkins 
 
 ```bash
 curl -X GET http://localhost:9090/api/age/01-01-1980
@@ -90,7 +90,7 @@ kubectl delete service project61-k8s
 Port forward
 
 ```bash
- kubectl port-forward pod/<pod-name> 9095:9095
+kubectl port-forward pod/<pod-name> 9095:9095
 ```
 
 Now deploy via the kubernetes yaml file.

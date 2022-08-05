@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+
+    tools {
+        jdk "jdk-17"
+        maven "maven3"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                //TODO: Change to forked repo
+                git 'https://github.com/gitorko/project61'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh "./gradlew clean build"
+            }
+            post {
+                // record the test results and archive the jar file.
+                success {
+                    junit 'build/test-results/test/TEST-*.xml'
+                    archiveArtifacts 'build/libs/*.jar'
+                }
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh "./gradlew jibDockerBuild"
+            }
+            post {
+                // record the test results and archive the jar file.
+                success {
+                    junit 'build/test-results/test/TEST-*.xml'
+                    archiveArtifacts 'build/libs/*.jar'
+                }
+            }
+        }
+        stage ('Push Docker Image') {
+            steps {
+                echo "Pushing docker image"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                 withKubeConfig([credentialsId: 'kubernetes-config']) {
+                  sh 'kubectl apply -f k8s/Deployment.yaml'
+                }
+            }
+        }
+    }
+}
