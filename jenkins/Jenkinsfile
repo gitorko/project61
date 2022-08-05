@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh "./gradlew jibDockerBuild"
+                sh "./gradlew jibDockerBuild -Djib.to.tags=$BUILD_NUMBER"
             }
             post {
                 // record the test results and archive the jar file.
@@ -39,13 +39,58 @@ pipeline {
         }
         stage ('Push Docker Image') {
             steps {
+                //TODO: docker hub push
                 echo "Pushing docker image"
             }
         }
         stage('Deploy') {
             steps {
                  withKubeConfig([credentialsId: 'kubernetes-config']) {
-                  sh 'kubectl apply -f k8s/Deployment.yaml'
+                  sh '''
+cat <<EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project61-k8s
+spec:
+  selector:
+      matchLabels:
+        app: project61-k8s
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: project61-k8s
+    spec:
+      containers:
+        - name: project61
+          image: project61:$BUILD_NUMBER
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9090
+          resources:
+            limits:
+              cpu: "1"
+              memory: "500Mi"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: project61-k8s
+spec:
+  ports:
+  - port: 9090
+    targetPort: 9090
+    name: http
+  selector:
+    app: project61-k8s
+  type: LoadBalancer
+                    '''
                 }
             }
         }
