@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 //TODO: Change to forked repo
-                git 'https://github.com/gitorko/project61'
+                git url: 'https://github.com/gitorko/project61', branch: 'master'
             }
         }
         stage('Build') {
