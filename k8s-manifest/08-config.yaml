@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-setting
+data:
+  prop1: foo-bar
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-password
+type: Opaque
+data:
+  prop2: dGVzdHBhc3N3b3Jk
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+spec:
+  containers:
+    - name: busybox
+      image: busybox:stable
+      imagePullPolicy: IfNotPresent
+      envFrom:
+        - configMapRef:
+            name: app-setting
+        - secretRef:
+            name: app-password
+      args:
+        - /bin/sh
+        - "-c"
+        - "echo $(prop1); echo $(prop2);"
+  restartPolicy: Never
+
+
+

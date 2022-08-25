@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cron-job-counter
+spec:
+  concurrencyPolicy: Allow
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: cron-job-counter
+              image: busybox:stable
+              imagePullPolicy: IfNotPresent
+              command:
+                - "sh"
+                - "-c"
+                - "echo 'test'"

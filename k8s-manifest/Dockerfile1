@@ -1,0 +1,2 @@
+FROM nginx:stable
+RUN echo "<html><body bgcolor=tomato><h1>Orange Site</h1></body></html>" > /usr/share/nginx/html/index.html

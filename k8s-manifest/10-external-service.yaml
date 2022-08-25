@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-svc
+spec:
+  selector:
+    app: external-svc
+  externalName: api.vmware.com
+  ports:
+    - port: 8080
+  type: ExternalName

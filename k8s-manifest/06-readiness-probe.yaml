@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app.kubernetes.io/name: nginx
+spec:
+  containers:
+    - name: nginx
+      image: nginx:stable
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 80
+          name: http-web-svc
+      readinessProbe:
+        httpGet:
+          path: /index.html
+          port: 80
+        initialDelaySeconds: 2
+        periodSeconds: 5

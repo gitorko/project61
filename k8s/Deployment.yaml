@@ -2,25 +2,31 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: project61-k8s
+  labels:
+    app: project61-k8s
+    version: v1
 spec:
   selector:
-      matchLabels:
-        app: project61-k8s
+    matchLabels:
+      app: project61-k8s
   strategy:
+    type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
-      maxUnavailable: 1
-    type: RollingUpdate
-  replicas: 1
+      maxUnavailable: 0
+  revisionHistoryLimit: 2
+  minReadySeconds: 6
+  replicas: 2
   template:
     metadata:
       labels:
         app: project61-k8s
+        version: v1
     spec:
       containers:
         - name: project61
           image: project61:1.0.0
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Never
           ports:
             - containerPort: 9090
           resources:
@@ -34,9 +40,9 @@ metadata:
   name: project61-k8s
 spec:
   ports:
-  - port: 9090
-    targetPort: 9090
-    name: http
+    - port: 9090
+      targetPort: 9090
+      name: http
   selector:
     app: project61-k8s
   type: LoadBalancer
